@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-@Document(indexName = "myindex")
-
+@Document(indexName = "indexesSub")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class SubEntity  extends BaseEntity{

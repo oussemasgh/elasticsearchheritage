@@ -22,4 +22,8 @@ public class BaseEntityService {
     public Optional<BaseEntity> findById(String id) {
         return baseEntityRepository.findById(id);
     }
+
+    public Iterable<BaseEntity> findAll() {
+        return  baseEntityRepository.findAll();
+    }
 }

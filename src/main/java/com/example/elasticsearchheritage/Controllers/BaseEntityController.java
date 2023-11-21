@@ -2,15 +2,18 @@ package com.example.elasticsearchheritage.Controllers;
 
 import com.example.elasticsearchheritage.Entities.BaseEntity;
 import com.example.elasticsearchheritage.Entities.SubEntity;
+import com.example.elasticsearchheritage.Entities.SubEntity2;
 import com.example.elasticsearchheritage.Services.BaseEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
-@RestController("/apis")
+@RestController()
+@RequestMapping("/apis")
 public class BaseEntityController {
 
     private final BaseEntityService myService;
@@ -32,7 +35,11 @@ public class BaseEntityController {
         myService.saveEntity(subEntity);
         return new ResponseEntity<>("SubEntity saved successfully", HttpStatus.CREATED);
     }
-
+    @PostMapping("/saveSub2Entity")
+    public ResponseEntity<String> saveSubEntity(@RequestBody SubEntity2 subEntity) {
+        myService.saveEntity(subEntity);
+        return new ResponseEntity<>("SubEntity saved successfully", HttpStatus.CREATED);
+    }
     @GetMapping("/getEntityById/{id}")
     public ResponseEntity<?> getEntityById(@PathVariable String id) {
         Optional<BaseEntity> entityOptional = myService.findById(id);
@@ -43,4 +50,11 @@ public class BaseEntityController {
             return new ResponseEntity<>("Entity not found", HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/findAll")
+    public ResponseEntity< ?  > findAll() {
+
+
+       return new ResponseEntity<>(myService.findAll(), HttpStatus.OK);
+    }
+
 }
